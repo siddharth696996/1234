@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreshCart Online Grocery Store</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background: #f1f8e9; color: #333; }
+
+/* Header with background image */
+header {
+  text-align: center; color: #fff; padding: 60px 20px;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+              url("https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200") center/cover #2e7d32;
+}
+header p { margin-top: 8px; }
+
+/* Sticky navigation */
+nav { position: sticky; top: 0; background: #1b5e20; text-align: center; padding: 12px; z-index: 10; }
+nav a { color: #fff; text-decoration: none; margin: 0 14px; padding: 6px 10px; border-radius: 20px; transition: 0.3s; }
+nav a:hover { background: #ffeb3b; color: #1b5e20; }
+
+section { padding: 30px 20px; max-width: 1100px; margin: auto; }
+h2 { color: #2e7d32; text-align: center; margin-bottom: 20px; }
+
+/* Special offer box with border-image */
+.offer {
+  text-align: center; background: #fff; padding: 20px; margin-bottom: 10px;
+  border: 8px solid; border-image: linear-gradient(45deg, #ef6c00, #2e7d32) 1;
+}
+h2 + p { text-align: center; margin-bottom: 15px; }   /* adjacent sibling selector */
+
+/* Grid of product cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.card {
+  background: #fff; text-align: center; padding: 15px; border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25); transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 10px 20px rgba(0,0,0,0.35); }
+.card .icon { font-size: 60px; }
+.card p.price { color: #c62828; font-weight: bold; margin: 8px 0; }
+.card:nth-child(odd)  { border-top: 5px solid #43a047; }
+.card:nth-child(even) { border-top: 5px solid #ef6c00; }
+
+/* Buttons */
+button {
+  background: #ef6c00; color: #fff; border: none; padding: 10px 22px;
+  border-radius: 25px; cursor: pointer; transition: 0.3s;
+}
+button:hover { background: #2e7d32; transform: scale(1.08); }
+
+/* Table with structural selectors */
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; }
+th, td { padding: 10px; text-align: center; }
+th { background: #2e7d32; color: #fff; }
+tr:nth-child(odd)  td { background: #e8f5e9; }
+tr:nth-child(even) td { background: #fff8e1; }
+tr:hover td { background: #ffe082; }
+tr:first-child th:first-child { border-top-left-radius: 10px; }
+
+/* Review form with pseudo-classes */
+form {
+  max-width: 450px; margin: auto; background: #fff; padding: 25px;
+  border-radius: 15px; box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+label { display: block; margin: 12px 0 5px; font-weight: bold; }
+input, textarea {
+  width: 100%; padding: 9px; border: 2px solid #bbb; border-radius: 8px; outline: none; transition: 0.3s;
+}
+input:focus, textarea:focus { border-color: #1976d2; box-shadow: 0 0 8px #90caf9; background: #e3f2fd; }
+input:required { border-left: 6px solid #ef6c00; }
+input:valid   { border-color: #43a047; }
+input:invalid { border-color: #e53935; }
+input:valid + .msg::after   { content: "\2714 Looks good"; color: #43a047; }
+input:invalid + .msg::after { content: "Required / invalid"; color: #e53935; }
+.msg { font-size: 13px; display: block; margin-top: 3px; }
+form button { width: 100%; margin-top: 18px; }
+
+footer { background: #1b5e20; color: #fff; text-align: center; padding: 20px; margin-top: 30px; }
+
+/* Media queries */
+@media (max-width: 768px) {
+  header { padding: 40px 15px; }
+  nav a { display: inline-block; margin: 4px; }
+  section { padding: 20px 12px; }
+}
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+  th, td { padding: 6px; font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<header id="home">
+  <h1>FreshCart Online Grocery Store</h1>
+  <p>Fresh Products &bull; Fast Delivery &bull; Best Prices</p>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#products">Products</a>
+  <a href="#prices">Price List</a>
+  <a href="#review">Review</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section>
+  <div class="offer">
+    <h2>Today's Special Offer</h2>
+    <p>Get 20% off on all fresh fruits and vegetables!</p>
+  </div>
+</section>
+
+<section id="products">
+  <h2>Popular Products</h2>
+  <p>Hand-picked fresh items for your kitchen.</p>
+  <div class="grid">
+    <div class="card"><div class="icon">&#127813;</div><h3>Tomato</h3><p class="price">Rs. 40 / kg</p><button>Add to Cart</button></div>
+    <div class="card"><div class="icon">&#127822;</div><h3>Apple</h3><p class="price">Rs. 180 / kg</p><button>Add to Cart</button></div>
+    <div class="card"><div class="icon">&#129371;</div><h3>Milk</h3><p class="price">Rs. 56 / litre</p><button>Add to Cart</button></div>
+    <div class="card"><div class="icon">&#127834;</div><h3>Bread</h3><p class="price">Rs. 40 / pack</p><button>Add to Cart</button></div>
+  </div>
+</section>
+
+<section id="prices">
+  <h2>Price List</h2>
+  <table>
+    <tr><th>Product</th><th>Category</th><th>Quantity</th><th>Price</th></tr>
+    <tr><td>Onion</td><td>Vegetables</td><td>1 kg</td><td>Rs. 35</td></tr>
+    <tr><td>Banana</td><td>Fruits</td><td>1 dozen</td><td>Rs. 60</td></tr>
+    <tr><td>Basmati Rice</td><td>Staples</td><td>5 kg</td><td>Rs. 450</td></tr>
+    <tr><td>Orange Juice</td><td>Beverages</td><td>1 litre</td><td>Rs. 90</td></tr>
+    <tr><td>Toor Dal</td><td>Pulses</td><td>1 kg</td><td>Rs. 150</td></tr>
+  </table>
+</section>
+
+<section id="review">
+  <h2>Customer Review</h2>
+  <form action="#" method="post">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+    <span class="msg"></span>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    <span class="msg"></span>
+
+    <label for="rating">Rating (1-5)</label>
+    <input type="number" id="rating" name="rating" min="1" max="5" required>
+    <span class="msg"></span>
+
+    <label for="comment">Comments</label>
+    <textarea id="comment" name="comment" rows="3" placeholder="Write your review"></textarea>
+
+    <button type="submit">Submit Review</button>
+  </form>
+</section>
+
+<footer id="contact">
+  <p>Coimbatore, Tamil Nadu | +91 9876543210 | support@freshcart.com</p>
+  <p>&copy; 2026 FreshCart Online Grocery Store</p>
+</footer>
+
+</body>
+</html>
