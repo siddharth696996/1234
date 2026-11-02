@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreshCart Online Grocery Store</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f1f8e9; margin: 0; padding: 20px; }
+  h1 { text-align: center; color: #1b5e20; }
+  h2 { color: #2e7d32; }
+  .section { background: #ffffff; padding: 15px; margin: 15px 0; border-radius: 8px; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #555; padding: 8px; text-align: center; }
+  th { background: #c8e6c9; }
+</style>
+</head>
+<body>
+
+<h1 id="top">FreshCart Online Grocery Store</h1>
+<hr>
+
+<div class="section">
+  <h2 id="about">About Us</h2>
+  <p>Welcome to FreshCart, your one-stop online grocery store. We deliver fresh vegetables,
+     fruits, dairy products and daily essentials right to your doorstep.</p>
+  <p>Our products are sourced directly from local farmers and trusted suppliers to ensure
+     quality, freshness and the best prices.</p>
+  <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=700"
+       alt="Fresh groceries" width="700">
+</div>
+<hr>
+
+<div class="section">
+  <h2>Hyperlinks</h2>
+  <p><a href="https://www.bigbasket.com" target="_blank">Visit BigBasket (External Link)</a></p>
+  <p><a href="#shop">Go to Shop Section (Internal Link)</a></p>
+  <p><a href="#top">Back to Top (Bookmark Link)</a></p>
+  <p><a href="mailto:support@freshcart.com">Send Email</a></p>
+  <p><a href="tel:+919876543210">Call Store</a></p>
+  <a href="https://www.bigbasket.com" target="_blank">
+    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=200"
+         alt="Click to visit grocery site" width="200">
+  </a>
+</div>
+<hr>
+
+<div class="section">
+  <h2 id="shop">Shop - Price List</h2>
+  <table>
+    <tr><th>Product</th><th>Category</th><th>Quantity</th><th>Price</th></tr>
+    <tr><td>Tomato</td><td>Vegetables</td><td>1 kg</td><td>Rs. 40</td></tr>
+    <tr><td>Apple</td><td>Fruits</td><td>1 kg</td><td>Rs. 180</td></tr>
+    <tr><td>Milk</td><td>Dairy</td><td>1 litre</td><td>Rs. 56</td></tr>
+    <tr><td>Basmati Rice</td><td>Staples</td><td>5 kg</td><td>Rs. 450</td></tr>
+  </table>
+</div>
+<hr>
+
+<div class="section">
+  <h2>Product Categories</h2>
+  <ol>
+    <li>Fresh Produce
+      <ol>
+        <li>Vegetables</li>
+        <li>Fruits</li>
+      </ol>
+    </li>
+    <li>Pantry Staples
+      <ol>
+        <li>Rice and Flour</li>
+        <li>Pulses and Spices</li>
+      </ol>
+    </li>
+  </ol>
+</div>
+<hr>
+
+<div class="section">
+  <h2>Our Services</h2>
+  <ul>
+    <li>Delivery
+      <ul>
+        <li>Same-Day Delivery</li>
+        <li>Scheduled Delivery</li>
+      </ul>
+    </li>
+    <li>Payment
+      <ul>
+        <li>UPI and Cards</li>
+        <li>Cash on Delivery</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<hr>
+
+<div class="section">
+  <h2>Contact</h2>
+  <p>Coimbatore, Tamil Nadu</p>
+  <p>support@freshcart.com</p>
+  <p>+91 9876543210</p>
+  <p>Thank you for shopping with FreshCart.</p>
+</div>
+
+</body>
+</html>
