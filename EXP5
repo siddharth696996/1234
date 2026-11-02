@@ -1,0 +1,101 @@
+function validateForm(event) {
+  event.preventDefault();
+  clearErrors();
+  let isValid = true;
+
+  // 1. Full Name
+  const name = document.getElementById("name").value.trim();
+  if (name === "") {
+    showError("nameError", "Name is required.");
+    isValid = false;
+  } else if (!/^[a-zA-Z\s]{2,50}$/.test(name)) {
+    showError("nameError", "Enter a valid name (letters only).");
+    isValid = false;
+  }
+
+  // 2. Email
+  const email = document.getElementById("email").value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showError("emailError", "Enter a valid email.");
+    isValid = false;
+  }
+
+  // 3. Password
+  const password = document.getElementById("password").value;
+  if (password.length < 6) {
+    showError("passwordError", "Minimum 6 characters required.");
+    isValid = false;
+  } else if (!/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+    showError("passwordError", "Use at least one uppercase letter and one number.");
+    isValid = false;
+  }
+
+  // 4. Phone Number
+  const phone = document.getElementById("phone").value.trim();
+  if (!/^[6-9][0-9]{9}$/.test(phone)) {
+    showError("phoneError", "Enter a valid 10-digit phone number.");
+    isValid = false;
+  }
+
+  // 5. Number of Family Members
+  const membersValue = document.getElementById("members").value;
+  const members = Number(membersValue);
+  if (membersValue === "" || members < 1 || members > 15) {
+    showError("membersError", "Members must be between 1 and 15.");
+    isValid = false;
+  }
+
+  // 6. Delivery Date (past dates not allowed)
+  const date = document.getElementById("date").value;
+  const now = new Date();
+  const today = now.getFullYear() + "-" +
+                String(now.getMonth() + 1).padStart(2, "0") + "-" +
+                String(now.getDate()).padStart(2, "0");
+  if (date === "" || date < today) {
+    showError("dateError", "Select a valid delivery date.");
+    isValid = false;
+  }
+
+  // 7. Delivery Type (radio button)
+  const delivery = document.querySelector('input[name="delivery"]:checked');
+  if (!delivery) {
+    showError("deliveryError", "Select a delivery type.");
+    isValid = false;
+  }
+
+  // 8. Favourite Items (checkbox)
+  const items = document.querySelectorAll('input[name="items"]:checked');
+  if (items.length === 0) {
+    showError("itemsError", "Select at least one item.");
+    isValid = false;
+  }
+
+  // 9. Favourite Category (dropdown)
+  const category = document.getElementById("category").value;
+  if (category === "") {
+    showError("categoryError", "Select a category.");
+    isValid = false;
+  }
+
+  // Registration Success
+  if (isValid) {
+    alert("Registration Successful! Welcome to FreshCart Online Grocery Store.");
+    document.querySelector("form").reset();
+  }
+}
+
+// Display Error Message
+function showError(elementId, message) {
+  const error = document.getElementById(elementId);
+  error.textContent = message;
+  error.style.display = "block";
+}
+
+// Clear Error Messages
+function clearErrors() {
+  const errors = document.querySelectorAll(".error-msg");
+  errors.forEach(function (el) {
+    el.textContent = "";
+    el.style.display = "none";
+  });
+}
