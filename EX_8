@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreshCart Online Grocery Store</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background: #f1f8e9; color: #333; }
+header {
+  background: #fff; padding: 18px 8%; display: flex; justify-content: space-between;
+  align-items: center; box-shadow: 0 2px 10px #ddd;
+}
+.logo { font-size: 24px; font-weight: bold; color: #2e7d32; }
+nav a { text-decoration: none; color: #444; margin-left: 22px; font-weight: bold; }
+nav a:hover { color: #ef6c00; }
+.hero {
+  margin: 30px auto; width: 85%; padding: 50px 30px; text-align: center;
+  background: #c8e6c9; border-radius: 25px;
+}
+.hero h1 { font-size: 36px; }
+.hero h1 span { color: #ef6c00; }
+.hero p { margin: 15px 0; color: #555; }
+button {
+  background: #ef6c00; color: #fff; border: none; padding: 12px 22px;
+  border-radius: 25px; cursor: pointer; font-weight: bold; margin: 5px;
+}
+button:hover { background: #e65100; }
+section { padding: 30px 8%; }
+.section-title { text-align: center; margin-bottom: 8px; font-size: 28px; color: #2e7d32; }
+.subtitle { text-align: center; color: #888; margin-bottom: 25px; }
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.card {
+  background: #fff; padding: 25px 15px; text-align: center; border-radius: 18px;
+  box-shadow: 0 4px 15px #ddd; transition: .3s;
+}
+.card:hover { transform: translateY(-7px); }
+.emoji { font-size: 50px; margin-bottom: 10px; }
+.card h3 { color: #2e7d32; margin-bottom: 6px; }
+.card p { color: #c62828; font-weight: bold; margin-bottom: 8px; }
+.server { background: #fff; border-radius: 18px; padding: 25px; box-shadow: 0 4px 15px #ddd; }
+.server-status {
+  background: #e8f5e9; color: #2e7d32; padding: 12px; border-radius: 10px;
+  text-align: center; font-weight: bold; margin-bottom: 20px;
+}
+.server-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 15px; }
+.server-box { background: #fff8e1; padding: 16px; border-radius: 12px; text-align: center; }
+.server-box h3 { color: #ef6c00; margin-bottom: 6px; }
+input { padding: 12px; border: 1px solid #ccc; border-radius: 8px; margin: 5px; width: 150px; }
+#apiResult { margin-top: 15px; color: #2e7d32; font-weight: bold; }
+pre {
+  background: #293342; color: #a6e6b5; padding: 18px; border-radius: 10px;
+  overflow-x: auto; margin-top: 15px; text-align: left; white-space: pre-wrap;
+}
+footer { background: #1b5e20; color: #fff; text-align: center; padding: 25px; margin-top: 35px; }
+@media (max-width: 850px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .server-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 550px) {
+  header { flex-direction: column; gap: 12px; }
+  .cards, .server-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">&#128722; FreshCart</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#server">Server Demo</a>
+  </nav>
+</header>
+
+<div class="hero" id="home">
+  <h1>Fresh Groceries, <span>Delivered!</span></h1>
+  <p>Welcome to FreshCart. Our products are loaded from a Node.js server using a JSON API.</p>
+  <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+</div>
+
+<section id="products">
+  <h2 class="section-title">Our Products</h2>
+  <p class="subtitle">Loaded live from <b>GET /api/products</b></p>
+  <div class="cards" id="productContainer"></div>
+</section>
+
+<section id="server">
+  <h2 class="section-title">Server Application Demo</h2>
+  <p class="subtitle">Test the API endpoints of the Node.js server.</p>
+  <div class="server">
+    <div class="server-status">&#9679; Node.js Server Running</div>
+
+    <div class="server-grid">
+      <div class="server-box"><h3>HTTP Server</h3><p>Handles incoming requests.</p></div>
+      <div class="server-box"><h3>GET Method</h3><p>Retrieves product data.</p></div>
+      <div class="server-box"><h3>POST Method</h3><p>Adds new products.</p></div>
+    </div>
+
+    <h3 style="margin-top:25px;">API Testing</h3>
+    <button onclick="getProducts()">GET /api/products</button>
+    <button onclick="getOne()">GET /api/products/1</button>
+
+    <div style="margin-top:20px;">
+      <h3>Add New Product</h3>
+      <input id="pName" placeholder="Product name">
+      <input id="pIcon" placeholder="Emoji">
+      <input id="pPrice" type="number" placeholder="Price">
+      <button onclick="postProduct()">POST /api/products</button>
+    </div>
+
+    <button onclick="test404()">Test 404 Error</button>
+
+    <div id="apiResult">Waiting for API request...</div>
+    <pre id="jsonOutput">API response will appear here...</pre>
+
+    <h3 style="margin-top:25px;">HTTP Status Codes</h3>
+    <div class="server-grid" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="server-box"><h3>200</h3><p>OK</p></div>
+      <div class="server-box"><h3>201</h3><p>Created</p></div>
+      <div class="server-box"><h3>400</h3><p>Bad Request</p></div>
+      <div class="server-box"><h3>404</h3><p>Not Found</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h3>&#128722; FreshCart</h3>
+  <p>Fresh &bull; Fast &bull; Affordable</p>
+  <p>&copy; 2026 FreshCart Online Grocery Store</p>
+</footer>
+
+<script>
+// Show the status and JSON returned by the server
+function showResponse(status, data) {
+  document.getElementById("apiResult").textContent = "HTTP Status: " + status;
+  document.getElementById("jsonOutput").textContent = JSON.stringify(data, null, 4);
+}
+
+// Send a request to the server and show the response
+async function callApi(url, options) {
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    showResponse(response.status, data);
+    return data;
+  } catch (error) {
+    showResponse("Error", { success: false, message: "Server not reachable." });
+  }
+}
+
+// Display product cards
+function displayProducts(list) {
+  document.getElementById("productContainer").innerHTML = list.map(function (p) {
+    return '<div class="card">' +
+             '<div class="emoji">' + p.icon + '</div>' +
+             '<h3>' + p.name + '</h3>' +
+             '<p>Rs. ' + p.price + ' / ' + p.unit + '</p>' +
+             '<button onclick="alert(\'' + p.name + ' added to cart!\')">Add to Cart</button>' +
+           '</div>';
+  }).join("");
+}
+
+// Load products when the page opens (GET)
+async function loadProducts() {
+  const response = await fetch("/api/products");
+  const result = await response.json();
+  displayProducts(result.data);
+}
+
+// GET /api/products
+async function getProducts() {
+  await callApi("/api/products");
+}
+
+// GET /api/products/1
+async function getOne() {
+  await callApi("/api/products/1");
+}
+
+// POST /api/products
+async function postProduct() {
+  const body = {
+    name: document.getElementById("pName").value,
+    icon: document.getElementById("pIcon").value,
+    price: document.getElementById("pPrice").value
+  };
+  const result = await callApi("/api/products", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  });
+  if (result && result.success) {
+    loadProducts();
+    document.getElementById("pName").value = "";
+    document.getElementById("pIcon").value = "";
+    document.getElementById("pPrice").value = "";
+  }
+}
+
+// 404 error demonstration
+async function test404() {
+  await callApi("/api/orders");
+}
+
+loadProducts();
+</script>
+</body>
+</html>
