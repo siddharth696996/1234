@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshCart Customer Registration Form</title>
+</head>
+<body>
+
+<h2>FreshCart Online Grocery Store - Customer Registration</h2>
+
+<form action="#" method="post">
+
+  <!-- Text Input -->
+  <label for="name">Full Name:</label><br>
+  <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
+
+  <!-- Email -->
+  <label for="email">Email Address:</label><br>
+  <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+
+  <!-- Password -->
+  <label for="password">Create Password:</label><br>
+  <input type="password" id="password" name="password" minlength="6" required><br><br>
+
+  <!-- Number -->
+  <label for="members">Number of Family Members:</label><br>
+  <input type="number" id="members" name="members" min="1" max="15" required><br><br>
+
+  <!-- Date -->
+  <label for="date">Preferred Delivery Date:</label><br>
+  <input type="date" id="date" name="date" required><br><br>
+
+  <!-- Radio Buttons -->
+  <label>Delivery Type:</label><br>
+  <input type="radio" id="standard" name="delivery" value="standard" required>
+  <label for="standard">Standard</label>
+  <input type="radio" id="express" name="delivery" value="express">
+  <label for="express">Express</label>
+  <input type="radio" id="pickup" name="delivery" value="pickup">
+  <label for="pickup">Store Pickup</label>
+  <br><br>
+
+  <!-- Checkbox -->
+  <label>Favorite Items:</label><br>
+  <input type="checkbox" id="veg" name="items" value="vegetables">
+  <label for="veg">Vegetables</label>
+  <input type="checkbox" id="fruit" name="items" value="fruits">
+  <label for="fruit">Fruits</label>
+  <input type="checkbox" id="dairy" name="items" value="dairy">
+  <label for="dairy">Dairy</label>
+  <br><br>
+
+  <!-- Dropdown -->
+  <label for="category">Favorite Grocery Category:</label><br>
+  <select id="category" name="category">
+    <option value="produce">Fresh Produce</option>
+    <option value="staples">Pantry Staples</option>
+    <option value="beverages">Beverages</option>
+    <option value="snacks">Snacks</option>
+  </select><br><br>
+
+  <!-- Datalist -->
+  <label for="product">Most Bought Product:</label><br>
+  <input list="products" id="product" name="product" placeholder="Choose or type">
+  <datalist id="products">
+    <option value="Basmati Rice">
+    <option value="Milk">
+    <option value="Tomato">
+    <option value="Apple">
+  </datalist><br><br>
+
+  <!-- Range -->
+  <label for="freshness">Freshness Importance (1-10):</label><br>
+  <input type="range" id="freshness" name="freshness" min="1" max="10"><br><br>
+
+  <!-- Color -->
+  <label for="color">Favorite Shopping Bag Color:</label><br>
+  <input type="color" id="color" name="color"><br><br>
+
+  <!-- Submit -->
+  <button type="submit">Register</button>
+</form>
+
+</body>
+</html>
